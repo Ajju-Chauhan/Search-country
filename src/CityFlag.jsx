@@ -24,12 +24,14 @@ function CityFlag() {
 
       return (
         <div className="maindiv">
-            {cityData.map((data, index) => (
+            {<h1>Loding</h1> &&
+            cityData.map((data, index) => (
                 <div key={index} className="innerdiv">
                     <img src={data.flags.png} alt={`${data.flags.alt} flag`} style={{ height: "100px", width: "100px" }} />
                     <h5>{data.name.common}</h5>
                 </div>
-            ))}
+            ))
+            }
         </div>
 
     );
