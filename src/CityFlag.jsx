@@ -11,11 +11,11 @@ function CityFlag() {
       const response = await axios.get('https://restcountries.com/v3.1/all');
 
       const data = await response.data;
-      console.log('Received data:', data);
+      console.log(data);
       setCityData(data);
       setLoading(false);
     } catch (error) {
-      console.error('Failed to fetch:', error);
+      console.error(error);
       setLoading(false);
     }
   };
