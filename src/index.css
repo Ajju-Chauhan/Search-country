@@ -1,6 +1,6 @@
 /* CityFlag.css */
 .maindiv {
-    max-height: 80vh; /* Adjust based on your preference */
+    max-height: 100vh; /* Adjust based on your preference */
     overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
