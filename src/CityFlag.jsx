@@ -7,7 +7,7 @@ function CityFlag() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://restcountries.com/v3.1/all'); // increase timeout to 10 seconds
+        const response = await fetch('https://restcountries.com/v3.1/all',{ timeout: 10000 }); // increase timeout to 10 seconds
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
