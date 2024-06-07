@@ -31,7 +31,7 @@ function CityFlag() {
       ) : (
         cityData.map((data, index) => (
           <div key={index} className="innerdiv">
-            <img src={data.flags.png} alt={data.flags.alt} style={{ height: "100px", width: "100px" }} />
+            <img src={data.flags.png} alt={data.name?.common} style={{ height: "100px", width: "100px" }} />
             <h5>{data.name?.common}</h5>
           </div>
         ))
