@@ -1,37 +1,49 @@
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import CountryCard from "./CountryCard";
+
 
 function CityFlag() {
   const [cityData, setCityData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    let URL = 'https://restcountries.com/v3.1/all'
-    fetch(URL)
-    .then((res)=> res.json())
-    .then((data)=> setCityData(data))
-    .catch((err)=> console.error("Error", err))
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://restcountries.com/v3.1/all', { timeout: 10000 });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Received data:', data);
+        setCityData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch:', error);
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
-  console.log(cityData);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>Error: {error}</h1>;
+  }
 
   return (
-    <div 
-     style={{
-      display: "flex",
-      flexWrap : "wrap",
-      alignItems: "center",
-      justifyContent: "center",
-      height : "100vh"
-
-    }}
-    >
+    <div className="maindiv">
       {cityData.map((data, index) => (
         <CountryCard
           key={index}
           countryName={data.name.common}
           imageUrl={data.flags.png}
-          flagAltText={data.flags.alt || data.name.common} // fallback to country name if alt is not available
+          flagAltText={data.flags.alt || data.name.common}
         />
       ))}
     </div>
