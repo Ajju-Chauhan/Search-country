@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CountryCard from "./CountryCard";
 
@@ -7,11 +8,9 @@ function CityFlag() {
   const [loading, setLoading] = useState(true);
   const getCountries = async () => {
     try {
-      const response = await fetch('https://restcountries.com/v3.1/all');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
+      const response = await axios.get('https://restcountries.com/v3.1/all');
+
+      const data = await response.data;
       console.log('Received data:', data);
       setCityData(data);
       setLoading(false);
