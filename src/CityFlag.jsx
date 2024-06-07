@@ -5,12 +5,12 @@ import CountryCard from "./CountryCard";
 function CityFlag() {
   const [cityData, setCityData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://restcountries.com/v3.1/all', { timeout: 10000 });
+        const response = await fetch('https://restcountries.com/v3.1/all');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -20,7 +20,6 @@ function CityFlag() {
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch:', error);
-        setError(error.message);
         setLoading(false);
       }
     };
@@ -32,9 +31,7 @@ function CityFlag() {
     return <h1>Loading...</h1>;
   }
 
-  if (error) {
-    return <h1>Error: {error}</h1>;
-  }
+  
 
   return (
     <div className="maindiv">
@@ -43,7 +40,7 @@ function CityFlag() {
           key={index}
           countryName={data.name.common}
           imageUrl={data.flags.png}
-          flagAltText={data.flags.alt || data.name.common}
+          flagAltText={data.flags.alt}
         />
       ))}
     </div>
