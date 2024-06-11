@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import CountryCard from "./CountryCard";
 
+// Debounce function
 function debounce(func, delay) {
   let timer;
   return function (...args) {
@@ -23,7 +24,7 @@ function CityFlag() {
       const response = await axios.get("https://restcountries.com/v3.1/all");
       const data = response.data;
       setCityData(data);
-      setFilteredData(data);
+      setFilteredData(data); // Initialize filtered data
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -49,20 +50,14 @@ function CityFlag() {
     }
   };
 
-  const debouncedHandleSearch = useCallback(debounce(handleSearch, 300), [
-    cityData,
-  ]);
+  const debouncedHandleSearch = useCallback(debounce(handleSearch, 300), [cityData]);
 
   useEffect(() => {
     if (searchInputRef.current) {
-      searchInputRef.current.addEventListener("input", debouncedHandleSearch);
+      const inputElement = searchInputRef.current;
+      inputElement.addEventListener("input", debouncedHandleSearch);
       return () => {
-        if (searchInputRef.current) {
-          searchInputRef.current.removeEventListener(
-            "input",
-            debouncedHandleSearch
-          );
-        }
+        inputElement.removeEventListener("input", debouncedHandleSearch);
       };
     }
   }, [debouncedHandleSearch]);
