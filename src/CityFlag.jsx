@@ -23,7 +23,7 @@ function CityFlag() {
       const response = await axios.get("https://restcountries.com/v3.1/all");
       const data = response.data;
       setCityData(data);
-      setFilteredData(data); // Initialize filtered data
+      setFilteredData(data);
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -44,7 +44,7 @@ function CityFlag() {
       );
       setFilteredData(filtered);
     } catch (error) {
-      console.error("Invalid regex pattern", error);
+      console.error(error);
       setFilteredData(cityData); // If regex fails, show all data
     }
   };
@@ -78,7 +78,7 @@ function CityFlag() {
       <div className="maindiv">
         {filteredData.map((data, index) => (
           <CountryCard
-            key={index}
+            key={`${data.name.common}-${data.flags.png}`}
             countryName={data.name.common}
             imageUrl={data.flags.png}
             flagAltText={data.flags.alt || data.name.common}
