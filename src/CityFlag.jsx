@@ -24,7 +24,7 @@ function CityFlag() {
       const response = await axios.get("https://restcountries.com/v3.1/all");
       const data = response.data;
       setCityData(data);
-      setFilteredData(data)
+      setFilteredData(data); // Initialize filtered data
       setLoading(false);
     } catch (error) {
       console.error(error);
