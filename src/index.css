@@ -31,30 +31,4 @@
     
     
   }
-  .inputdiv {
-    margin-bottom: 20px;
-  }
-  
-  .maindiv {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .countryCard {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    width: 200px;
-  }
-  
-  .countryCard img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .countryCard h2 {
-    margin-top: 10px;
-    font-size: 18px;
-  }
   
