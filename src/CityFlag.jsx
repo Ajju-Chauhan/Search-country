@@ -76,14 +76,18 @@ function CityFlag() {
         />
       </div>
       <div className="maindiv">
-        {filteredData.map((data) => (
-          <CountryCard
-            key={data.cca3}
-            countryName={data.name.common}
-            imageUrl={data.flags.png}
-            flagAltText={data.flags.alt || data.name.common}
-          />
-        ))}
+        {filteredData.length > 0 ? (
+          filteredData.map((data) => (
+            <CountryCard
+              key={data.cca3}
+              countryName={data.name.common}
+              imageUrl={data.flags.png}
+              flagAltText={data.flags.alt || data.name.common}
+            />
+          ))
+        ) : (
+          <p>No results found</p>
+        )}
       </div>
     </>
   );
