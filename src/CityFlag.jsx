@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import CountryCard from "./CountryCard";
 
-// Debounce function
 function debounce(func, delay) {
   let timer;
   return function (...args) {
