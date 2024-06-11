@@ -61,12 +61,10 @@ function CityFlag() {
           <p>No matching countries found</p>
         ) : (
           filteredData.map((data) => (
-            <CountryCard
-              key={data.cca3}
-              countryName={data.name.common}
-              imageUrl={data.flags.png}
-              flagAltText={data.flags.alt || data.name.common}
-            />
+            <div key={data.cca3} className="countryCard">
+              <img src={data.flags.png} alt={data.name.common} />
+              <h2>{data.name.common}</h2>
+            </div>
           ))
         )}
       </div>
