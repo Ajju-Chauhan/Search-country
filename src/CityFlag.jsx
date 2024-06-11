@@ -83,6 +83,7 @@ function CityFlag() {
               countryName={data.name.common}
               imageUrl={data.flags.png}
               flagAltText={data.flags.alt || data.name.common}
+              className="countryCard"
             />
           ))
         ) : (
