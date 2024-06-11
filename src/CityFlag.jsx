@@ -29,23 +29,19 @@ function CityFlag() {
   }, []);
 
   useEffect(() => {
-    if (searchTerm.trim() === "") {
+    if (!searchTerm) {
       setFilteredData(cityData);
-    } else {
-      const filtered = cityData.filter((country) =>
-        country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredData(filtered);
+      return;
     }
+
+    const filtered = cityData.filter((country) =>
+      country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredData(filtered);
   }, [searchTerm, cityData]);
 
   const handleSearch = () => {
     setSearchTerm(searchInputRef.current.value);
-  };
-
-  const clearSearch = () => {
-    setSearchTerm("");
-    searchInputRef.current.value = "";
   };
 
   return (
@@ -57,7 +53,6 @@ function CityFlag() {
           ref={searchInputRef}
           onChange={handleSearch}
         />
-        <button onClick={clearSearch}>Clear</button>
       </div>
       <div className="maindiv">
         {loading ? (
