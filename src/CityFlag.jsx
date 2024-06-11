@@ -44,19 +44,24 @@ function CityFlag() {
       );
       setFilteredData(filtered);
     } catch (error) {
-      console.error(error);
+      console.error("Invalid regex pattern", error);
       setFilteredData(cityData); // If regex fails, show all data
     }
   };
 
-  const debouncedHandleSearch = useCallback(debounce(handleSearch, 300), [cityData]);
+  const debouncedHandleSearch = useCallback(debounce(handleSearch, 300), [
+    cityData,
+  ]);
 
   useEffect(() => {
     if (searchInputRef.current) {
       searchInputRef.current.addEventListener("input", debouncedHandleSearch);
       return () => {
         if (searchInputRef.current) {
-          searchInputRef.current.removeEventListener("input", debouncedHandleSearch);
+          searchInputRef.current.removeEventListener(
+            "input",
+            debouncedHandleSearch
+          );
         }
       };
     }
@@ -76,9 +81,9 @@ function CityFlag() {
         />
       </div>
       <div className="maindiv">
-        {filteredData.map((data, index) => (
+        {filteredData.map((data) => (
           <CountryCard
-            key={`${data.name.common}-${data.flags.png}`}
+            key={data.cca3}
             countryName={data.name.common}
             imageUrl={data.flags.png}
             flagAltText={data.flags.alt || data.name.common}
