@@ -24,7 +24,7 @@ function CityFlag() {
       const response = await axios.get("https://restcountries.com/v3.1/all");
       const data = response.data;
       setCityData(data);
-      setFilteredData(data); // Initialize filtered data
+      setFilteredData(data); 
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -39,14 +39,14 @@ function CityFlag() {
   const handleSearch = () => {
     const value = searchInputRef.current.value;
     try {
-      const regex = new RegExp(value, "i"); // 'i' for case-insensitive
+      const regex = new RegExp(value, "i"); 
       const filtered = cityData.filter((country) =>
         regex.test(country.name.common)
       );
       setFilteredData(filtered);
     } catch (error) {
       console.error("Invalid regex pattern", error);
-      setFilteredData(cityData); // If regex fails, show all data
+      setFilteredData(cityData); 
     }
   };
 
