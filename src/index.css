@@ -32,3 +32,36 @@
     
   }
   
+
+
+  /* CountryCard.css */
+
+.countryCard {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.countryCard img {
+  width: 50px;
+  height: auto;
+  margin-right: 15px;
+  border-radius: 4px;
+}
+
+.countryCard p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.countryCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
